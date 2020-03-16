@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<title>
+Web Arduino App
+</title>
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+	<p id="1"></p>
+	<p id="2"></p>
+	<input type="file" />
+  <!-- writing JavaScript inside html -->
+  <script>
+        const filename = document.querySelector('input[type="file"]');
+        filename.addEventListener('change', function (){
+        // Creating a FileReader object using the constructor.
+        const filereader = new FileReader();
+        // Reading a file as plain text
+        filereader.readAsText(filename.files[0]);
+        // Call this function to print the contents of the file
+        // once the file has been read.
+        filereader.onload = function() {
+            console.log(filereader.result);
+        };
+        // Print the error incase there is one
+        filereader.onerror = function() {
+            console.log("Error: ", filereader.error);
+        };
+},false);
+  </script>
+	<script>
+ 
+	class Data{
+		constructor(temp,humd){
+			this.temp=temp;
+			this.humd=humd;
+		}
+	}
+	myData=new Data(1,2);
+	document.getElementById("1").innerHTML = myData.temp;
+	document.getElementById("2").innerHTML = myData.humd;
+	</script>
+</body>
+
+</html>

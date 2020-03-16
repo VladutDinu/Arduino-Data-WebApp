@@ -1,12 +1,47 @@
 <!DOCTYPE html>
-<html>
-
-<title>
-Web Arduino App
-</title>
-
+<html lang="en">
+<head>
+  <title>Project</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <script src="graph.js"></script>
+</head>
 <body>
-<p>TIBI E GAY</p>
-</body>
 
+<div class="jumbotron text-center">
+  <h1>Arduino-Data-WebApp</h1>
+</div>
+  <input type="file" />
+  <!-- writing JavaScript inside html -->
+  <script>
+        const filename = document.querySelector('input[type="file"]');
+        filename.addEventListener('change', function (){
+        // Creating a FileReader object using the constructor.
+        const filereader = new FileReader();
+        // Reading a file as plain text
+        filereader.readAsText(filename.files[0]);
+        // Call this function to print the contents of the file
+        // once the file has been read.
+        filereader.onload = function() {
+			var array=filereader.result.split(",");
+            console.log(array[0]);
+			console.log(array[1]);
+			console.log(array[2]);
+        };
+        // Print the error incase there is one
+        filereader.onerror = function() {
+            console.log("Error: ", filereader.error);
+        };
+},false);
+  </script>
+<body>
+    <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+    <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+    <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+
+</body>
 </html>
